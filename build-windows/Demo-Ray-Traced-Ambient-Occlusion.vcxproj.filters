@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\thirdparty\DXUT\Optional\DXUTcamera.cpp">
+      <Filter>thirdparty\DXUT\Optional</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\main.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\renderer.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\scene_renderer.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\thirdparty\DXUT\Optional\DXUTcamera.h">
+      <Filter>thirdparty\DXUT\Optional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\renderer.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\renderer_config.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\scene_renderer.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\user_input_model.h">
+      <Filter>source</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="thirdparty">
+      <UniqueIdentifier>{3fd46330-fb50-48b9-9af8-f2bd1292021a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\Vulkan-ValidationLayers">
+      <UniqueIdentifier>{0a393837-6c85-4124-89a5-28e5ae120ec4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\Vulkan-ValidationLayers\x86">
+      <UniqueIdentifier>{8392cec9-8a4b-4f55-939a-fda75c196bb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\Vulkan-ValidationLayers\x64">
+      <UniqueIdentifier>{20e5e431-be5d-49a8-9c62-4973be7abee1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{59f24b2c-072f-4fca-91b0-b70b46bd4124}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\DXUT">
+      <UniqueIdentifier>{f7d83823-43d7-49e8-b83c-1dd3073fbb15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\DXUT\Optional">
+      <UniqueIdentifier>{456eaae7-f9bf-44e1-ae6e-48833a69f943}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\thirdparty\Vulkan-ValidationLayers\bin\win32\x86\VkLayer_khronos_validation.dll">
+      <Filter>thirdparty\Vulkan-ValidationLayers\x86</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\thirdparty\Vulkan-ValidationLayers\bin\win32\x86\VkLayer_khronos_validation.json">
+      <Filter>thirdparty\Vulkan-ValidationLayers\x86</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\thirdparty\Vulkan-ValidationLayers\bin\win32\x64\VkLayer_khronos_validation.json">
+      <Filter>thirdparty\Vulkan-ValidationLayers\x64</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\thirdparty\Vulkan-ValidationLayers\bin\win32\x64\VkLayer_khronos_validation.dll">
+      <Filter>thirdparty\Vulkan-ValidationLayers\x64</Filter>
+    </CopyFileToFolders>
+  </ItemGroup>
+</Project>

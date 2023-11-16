@@ -1,0 +1,48 @@
+//
+// Copyright (C) YuqiaoZhang(HanetakaChou)
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+#ifndef _SKIN_PIPELINE_RESOURCE_BINDING_SLI_
+#define _SKIN_PIPELINE_RESOURCE_BINDING_SLI_ 1
+
+#include "../thirdparty/Brioche/shaders/brx_define.sli"
+
+// D3D11_CS_DISPATCH_MAX_THREAD_GROUPS_PER_DIMENSION 65535
+// maxComputeWorkGroupCount 65535
+#define MAX_SKIN_COMPUTE_DISPATCH_THREAD_GROUPS_PER_DIMENSION 65535u
+
+// D3D11_REQ_CONSTANT_BUFFER_ELEMENT_COUNT 4096
+// Vulkan Core: maxUniformBufferRange 16384 = 16 * 1024
+// Vulkan Roadmap 2022: maxUniformBufferRange 65536 = 16 * 4096
+#define MAX_JOINT_COUNT 2048u
+
+brx_cbuffer(skin_pipeline_per_mesh_instance_update_set_uniform_buffer_binding, 0, 0)
+{
+    brx_float4 g_dual_quaternions[2 * brx_int(MAX_JOINT_COUNT)];
+};
+
+brx_read_only_byte_address_buffer_array(g_mesh_subset_buffers, 1, 0, 3);
+
+brx_write_only_byte_address_buffer_array(g_mesh_skinned_subset_buffers, 1, 1, 2);
+
+#define skin_root_signature_macro                                                                   \
+    brx_root_signature_root_parameter_begin(skin_root_signature_name)                               \
+    brx_root_signature_root_cbv(0, 0) brx_root_signature_root_parameter_split                       \
+    brx_root_signature_root_descriptor_table_srv(1, 0, 3) brx_root_signature_root_parameter_split   \
+    brx_root_signature_root_descriptor_table_uav(1, 1, 2)                                           \
+    brx_root_signature_root_parameter_end
+
+#endif

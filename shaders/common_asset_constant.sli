@@ -1,0 +1,64 @@
+//
+// Copyright (C) YuqiaoZhang(HanetakaChou)
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+#ifndef _COMMON_ASSET_CONSTANT_SLI_
+#define _COMMON_ASSET_CONSTANT_SLI_ 1
+
+#define g_vertex_position_buffer_stride 12u
+#define g_vertex_varying_buffer_stride 12u
+#define g_vertex_joint_buffer_stride 12u
+#define g_index_uint16_buffer_stride 2u
+#define g_index_uint32_buffer_stride 4u
+
+#if defined(__cplusplus)
+static_assert((sizeof(scene_mesh_vertex_position_binding)) == g_vertex_position_buffer_stride, "");
+static_assert(0U == (g_vertex_position_buffer_stride % 4U), "");
+static_assert((sizeof(scene_mesh_vertex_varying_binding)) == g_vertex_varying_buffer_stride, "");
+static_assert(0U == (g_vertex_varying_buffer_stride % 4U), "");
+static_assert((sizeof(scene_mesh_vertex_joint_binding)) == g_vertex_joint_buffer_stride, "");
+static_assert(0U == (g_vertex_joint_buffer_stride % 4U), "");
+static_assert((sizeof(uint16_t)) == g_index_uint16_buffer_stride, "");
+static_assert((sizeof(uint32_t)) == g_index_uint32_buffer_stride, "");
+#endif
+
+#define Buffer_Flag_Index_Type_UInt16 0x1u
+#define Texture_Flag_Enable_Normal_Texture 0x2u
+#define Texture_Flag_Enable_Emissive_Texture 0x4u
+#define Texture_Flag_Enable_Base_Colorl_Texture 0x8u
+#define Texture_Flag_Enable_Metallic_Roughness_Texture 0x10u
+
+#if defined(__cplusplus)
+struct mesh_subset_information_storage_buffer_T
+{
+    uint32_t m_buffer_texture_flags;
+    float m_normal_texture_scale;
+    float m_emissive_factor_x;
+    float m_emissive_factor_y;
+
+    float m_emissive_factor_z;
+    float m_base_color_factor_x;
+    float m_base_color_factor_y;
+    float m_base_color_factor_z;
+
+    float m_metallic_factor;
+    float m_roughness_factor;
+    uint32_t _unused_padding_1;
+    uint32_t _unused_padding_2;
+};
+#endif
+
+#endif

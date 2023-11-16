@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\build-HLSL\HLSL.mk" />
+    <None Include="..\shaders\ambient_occlusion_compute.sl" />
+    <None Include="..\shaders\ambient_occlusion_pipeline_resource_binding.sli" />
+    <None Include="..\shaders\common_asset_constant.sli" />
+    <None Include="..\shaders\common_gbuffer_pipeline_ambient_occlusion_pipeline_resource_binding.sli" />
+    <None Include="..\shaders\dxil\ambient_occlusion_compute.inl" />
+    <None Include="..\shaders\dxil\full_screen_transfer_fragment.inl" />
+    <None Include="..\shaders\dxil\full_screen_transfer_vertex.inl" />
+    <None Include="..\shaders\dxil\gbuffer_compute.inl" />
+    <None Include="..\shaders\dxil\skin_compute.inl" />
+    <None Include="..\shaders\full_screen_transfer_fragment.sl" />
+    <None Include="..\shaders\full_screen_transfer_pipeline_layout.sli" />
+    <None Include="..\shaders\full_screen_transfer_vertex.sl" />
+    <None Include="..\shaders\gbuffer_compute.sl" />
+    <None Include="..\shaders\gbuffer_pipeline_resource_binding.sli" />
+    <None Include="..\shaders\low_discrepancy_sequence.sli" />
+    <None Include="..\shaders\math_constant.sli" />
+    <None Include="..\shaders\offset_ray_origin.sli" />
+    <None Include="..\shaders\pdf_sampling.sli" />
+    <None Include="..\shaders\skin_compute.sl" />
+    <None Include="..\shaders\skin_pipeline_resource_binding.sli" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <ProjectGuid>{6FA55C90-3972-4895-8D26-E73318AA5C01}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>ClangCL</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>ClangCL</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>ClangCL</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>ClangCL</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <NMakeBuildCommandLine>"$(ProjectDir)\..\thirdparty\make\bin\win32\x64\make.exe" -C "$(ProjectDir)/../build-HLSL" -f "./HLSL.mk" "APP_DEBUG:=true"</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>"$(ProjectDir)\..\thirdparty\make\bin\win32\x64\make.exe" -C "$(ProjectDir)/../build-HLSL" -f "./HLSL.mk" "APP_DEBUG:=true" clean</NMakeCleanCommandLine>
+    <NMakePreprocessorDefinitions>
+    </NMakePreprocessorDefinitions>
+    <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\obj\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <NMakeOutput>
+    </NMakeOutput>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeBuildCommandLine>"$(ProjectDir)\..\thirdparty\make\bin\win32\x64\make.exe" -C "$(ProjectDir)/../build-HLSL" -f "./HLSL.mk" "APP_DEBUG:=true"</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>"$(ProjectDir)\..\thirdparty\make\bin\win32\x64\make.exe" -C "$(ProjectDir)/../build-HLSL" -f "./HLSL.mk" "APP_DEBUG:=true" clean</NMakeCleanCommandLine>
+    <NMakePreprocessorDefinitions>
+    </NMakePreprocessorDefinitions>
+    <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\obj\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <NMakeOutput>
+    </NMakeOutput>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeBuildCommandLine>"$(ProjectDir)\..\thirdparty\make\bin\win32\x64\make.exe" -C "$(ProjectDir)/../build-HLSL" -f "./HLSL.mk" "APP_DEBUG:=false"</NMakeBuildCommandLine>
+    <NMakeOutput>
+    </NMakeOutput>
+    <NMakeCleanCommandLine>"$(ProjectDir)\..\thirdparty\make\bin\win32\x64\make.exe" -C "$(ProjectDir)/../build-HLSL" -f "./HLSL.mk" "APP_DEBUG:=false" clean</NMakeCleanCommandLine>
+    <NMakePreprocessorDefinitions>
+    </NMakePreprocessorDefinitions>
+    <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\obj\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <NMakeBuildCommandLine>"$(ProjectDir)\..\thirdparty\make\bin\win32\x64\make.exe" -C "$(ProjectDir)/../build-HLSL" -f "./HLSL.mk" "APP_DEBUG:=false"</NMakeBuildCommandLine>
+    <NMakeOutput>
+    </NMakeOutput>
+    <NMakeCleanCommandLine>"$(ProjectDir)\..\thirdparty\make\bin\win32\x64\make.exe" -C "$(ProjectDir)/../build-HLSL" -f "./HLSL.mk" "APP_DEBUG:=false" clean</NMakeCleanCommandLine>
+    <NMakePreprocessorDefinitions>
+    </NMakePreprocessorDefinitions>
+    <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\obj\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

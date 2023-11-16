@@ -1,0 +1,63 @@
+//
+// Copyright (C) YuqiaoZhang(HanetakaChou)
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+#ifndef _GBUFFER_PIPELINE_RESOURCE_BINDING_SLI_
+#define _GBUFFER_PIPELINE_RESOURCE_BINDING_SLI_ 1
+
+#include "../thirdparty/Brioche/shaders/brx_define.sli"
+#include "common_gbuffer_pipeline_ambient_occlusion_pipeline_resource_binding.sli"
+
+#define PER_MESH_SUBSET_BUFFER_COUNT 4u
+#define PER_MESH_SUBSET_TEXTURE_COUNT 4u
+
+brx_top_level_acceleration_structure(g_top_level_acceleration_structure, 0, 1);
+
+struct instance_information_T
+{
+    brx_uint m_global_geometry_index_offset;
+    brx_uint _unused_padding_1;
+    brx_uint _unused_padding_2;
+    brx_uint _unused_padding_3;
+};
+
+#define MAX_INSTANCE_COUNT 4096
+
+brx_cbuffer(gbuffer_pipeline_none_update_set_instance_information_uniform_buffer_binding, 0, 2)
+{
+    instance_information_T g_instance_information[MAX_INSTANCE_COUNT];
+};
+
+brx_sampler_state(g_sampler, 0, 3);
+
+brx_write_only_texture_2d_uint_array(g_gbuffer_textures, 0, 4, 2);
+
+brx_read_only_byte_address_buffer_unbounded(g_mesh_subset_buffers, 1, 0);
+
+brx_texture_2d_unbounded(g_mesh_subset_textures, 2, 0);
+
+#define gbuffer_root_signature_macro                                                                                            \
+    brx_root_signature_root_parameter_begin(gbuffer_root_signature_name)                                                        \
+    brx_root_signature_root_cbv(0, 0) brx_root_signature_root_parameter_split                                                   \
+    brx_root_signature_root_descriptor_table_top_level_acceleration_structure(0, 1, 1) brx_root_signature_root_parameter_split  \
+    brx_root_signature_root_cbv(0, 2) brx_root_signature_root_parameter_split                                                   \
+    brx_root_signature_root_descriptor_table_sampler(0, 3, 1) brx_root_signature_root_parameter_split                           \
+    brx_root_signature_root_descriptor_table_uav(0, 4, 2) brx_root_signature_root_parameter_split                               \
+    brx_root_signature_root_descriptor_table_srv_unbounded(1, 0) brx_root_signature_root_parameter_split                      \
+    brx_root_signature_root_descriptor_table_srv_unbounded(2, 0)                                                              \
+    brx_root_signature_root_parameter_end
+
+#endif

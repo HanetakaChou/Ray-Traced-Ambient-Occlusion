@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="build-HLSL">
+      <UniqueIdentifier>{cbac4114-468d-44d6-bcd3-363d12ae54f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{812b1746-0ddf-4e03-bdad-3a4b8b34a8b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\dxil">
+      <UniqueIdentifier>{90f71ccb-ec14-48fd-96b6-4d4411e680ba}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\build-HLSL\HLSL.mk">
+      <Filter>build-HLSL</Filter>
+    </None>
+    <None Include="..\shaders\dxil\ambient_occlusion_compute.inl">
+      <Filter>shaders\dxil</Filter>
+    </None>
+    <None Include="..\shaders\dxil\full_screen_transfer_fragment.inl">
+      <Filter>shaders\dxil</Filter>
+    </None>
+    <None Include="..\shaders\dxil\full_screen_transfer_vertex.inl">
+      <Filter>shaders\dxil</Filter>
+    </None>
+    <None Include="..\shaders\dxil\gbuffer_compute.inl">
+      <Filter>shaders\dxil</Filter>
+    </None>
+    <None Include="..\shaders\dxil\skin_compute.inl">
+      <Filter>shaders\dxil</Filter>
+    </None>
+    <None Include="..\shaders\common_asset_constant.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\common_gbuffer_pipeline_ambient_occlusion_pipeline_resource_binding.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\full_screen_transfer_fragment.sl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\full_screen_transfer_pipeline_layout.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\full_screen_transfer_vertex.sl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\gbuffer_compute.sl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\gbuffer_pipeline_resource_binding.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\low_discrepancy_sequence.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\math_constant.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\offset_ray_origin.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\pdf_sampling.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\skin_compute.sl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\skin_pipeline_resource_binding.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\ambient_occlusion_compute.sl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\ambient_occlusion_pipeline_resource_binding.sli">
+      <Filter>shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>

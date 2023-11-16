@@ -1,0 +1,72 @@
+[submodule "thirdparty/Brioche"]
+	path = thirdparty/Brioche
+	url = git@github.com:HanetakaChou/Brioche.git
+	branch = master
+[submodule "thirdparty/CoreRT"]
+	path = thirdparty/CoreRT
+	url = git@github.com:HanetakaChou/Brioche-Asset-Import.git
+	branch = CoreRT
+[submodule "thirdparty/DirectXMath"]
+	path = thirdparty/DirectXMath
+	url = git@github.com:HanetakaChou/Brioche-Asset-Import.git
+	branch = DirectXMath
+[submodule "thirdparty/DXUT"]
+	path = thirdparty/DXUT
+	url = git@github.com:HanetakaChou/Brioche-Asset-Import.git
+	branch = DXUT
+[submodule "thirdparty/DLB"]
+	path = thirdparty/DLB
+	url = git@github.com:HanetakaChou/Dual-Quaternion-Linear-Blending.git
+	branch = master
+[submodule "assets/the-white-room"]
+	path = assets/the-white-room
+	url = git@github.com:HanetakaChou/glTF-Assets.git
+	branch = the-white-room
+[submodule "assets/keqing-lolita"]
+	path = assets/keqing-lolita
+	url = git@github.com:HanetakaChou/glTF-Assets.git
+	branch = keqing-lolita
+[submodule "thirdparty/DirectXShaderCompiler"]
+	path = thirdparty/DirectXShaderCompiler
+	url = git@github.com:HanetakaChou/Brioche.git
+	branch = DirectXShaderCompiler
+[submodule "thirdparty/shaderc"]
+	path = thirdparty/shaderc
+	url = git@github.com:HanetakaChou/Brioche.git
+	branch = shaderc
+[submodule "thirdparty/make"]
+	path = thirdparty/make
+	url = git@github.com:HanetakaChou/Brioche.git
+	branch = make
+[submodule "thirdparty/Vulkan-ValidationLayers"]
+	path = thirdparty/Vulkan-ValidationLayers
+	url = git@github.com:HanetakaChou/Brioche.git
+	branch = Vulkan-ValidationLayers
+[submodule "thirdparty/D3D12-Agility-SDK"]
+	path = thirdparty/D3D12-Agility-SDK
+	url = git@github.com:HanetakaChou/Brioche.git
+	branch = D3D12-Agility-SDK
+[submodule "thirdparty/Brioche-ImGui"]
+	path = thirdparty/Brioche-ImGui
+	url = git@github.com:HanetakaChou/Brioche-ImGui.git
+	branch = master
+[submodule "thirdparty/Reversed-Z"]
+	path = thirdparty/Reversed-Z
+	url = git@github.com:HanetakaChou/Brioche-Asset-Import.git
+	branch = Reversed-Z
+[submodule "thirdparty/Packed-Vector"]
+	path = thirdparty/Packed-Vector
+	url = git@github.com:HanetakaChou/Brioche-Asset-Import.git
+	branch = Packed-Vector
+[submodule "thirdparty/libiconv"]
+	path = thirdparty/libiconv
+	url = git@github.com:HanetakaChou/libiconv.git
+	branch = master
+[submodule "thirdparty/Brioche-Asset-Import"]
+	path = thirdparty/Brioche-Asset-Import
+	url = git@github.com:HanetakaChou/Brioche-Asset-Import.git
+	branch = master
+[submodule "thirdparty/McRT-Malloc"]
+	path = thirdparty/McRT-Malloc
+	url = git@github.com:HanetakaChou/McRT-Malloc.git
+	branch = master

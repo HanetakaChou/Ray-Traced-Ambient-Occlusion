@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="assets">
+      <UniqueIdentifier>{f100afd5-8127-409f-8a9a-7e9a821ac3c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\the-white-room">
+      <UniqueIdentifier>{61e2a4d9-a156-4189-b2f7-bfb605c9badc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\keqing-lolita">
+      <UniqueIdentifier>{79cc2911-1e86-439f-b045-4f8ef4a459ab}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\assets\assets.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\assets\the_white_room_1_dds.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\assets\the_white_room_1_s_dds.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\assets\the_white_room_2_dds.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\assets\the_white_room_2_n_dds.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\assets\the_white_room_3_dds.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\assets\the_white_room_4_dds.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\assets\the_white_room_bin.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\assets\the_white_room_gltf.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\assets\keqing_lolita_love_you_bin.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\assets\keqing_lolita_love_you_gltf.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\assets\keqing_lolita_dds.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\assets\assets.h">
+      <Filter>assets</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\assets\the-white-room\the-white-room-4.dds">
+      <Filter>assets\the-white-room</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\assets\the-white-room\the-white-room.bin">
+      <Filter>assets\the-white-room</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\assets\the-white-room\the-white-room.gltf">
+      <Filter>assets\the-white-room</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\assets\the-white-room\the-white-room-1.dds">
+      <Filter>assets\the-white-room</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\assets\the-white-room\the-white-room-1_s.dds">
+      <Filter>assets\the-white-room</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\assets\the-white-room\the-white-room-2.dds">
+      <Filter>assets\the-white-room</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\assets\the-white-room\the-white-room-2_n.dds">
+      <Filter>assets\the-white-room</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\assets\the-white-room\the-white-room-3.dds">
+      <Filter>assets\the-white-room</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\assets\keqing-lolita\keqing-lolita-love-you.gltf">
+      <Filter>assets\keqing-lolita</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\assets\keqing-lolita\keqing-lolita-love-you.bin">
+      <Filter>assets\keqing-lolita</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\assets\keqing-lolita\keqing-lolita.dds">
+      <Filter>assets\keqing-lolita</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

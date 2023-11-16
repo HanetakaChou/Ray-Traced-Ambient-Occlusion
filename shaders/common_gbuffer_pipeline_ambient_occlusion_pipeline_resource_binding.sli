@@ -1,0 +1,39 @@
+//
+// Copyright (C) YuqiaoZhang(HanetakaChou)
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+#ifndef _COMMON_GBUFFER_PIPELINE_AMBIENT_OCCLUSION_PIPELINE_RESOURCE_BINDING_SLI_
+#define _COMMON_GBUFFER_PIPELINE_AMBIENT_OCCLUSION_PIPELINE_RESOURCE_BINDING_SLI_ 1
+
+#include "../thirdparty/Brioche/shaders/brx_define.sli"
+
+brx_cbuffer(common_none_update_set_uniform_buffer_binding, 0, 0)
+{
+    brx_column_major brx_float4x4 g_view_transform;
+    brx_column_major brx_float4x4 g_projection_transform;
+    brx_column_major brx_float4x4 g_inverse_view_transform;
+    brx_column_major brx_float4x4 g_inverse_projection_transform;
+
+    brx_float g_screen_width;
+    brx_float g_screen_height;
+
+    brx_float g_ambient_occlusion_max_distance;
+    brx_float g_ambient_occlusion_sample_count;
+};
+
+#define INVALID_GBUFFER_DEPTH 0
+
+#endif

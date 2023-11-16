@@ -1,0 +1,38 @@
+//
+// Copyright (C) YuqiaoZhang(HanetakaChou)
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+#ifndef _AMBIENT_OCCLUSION_PIPELINE_RESOURCE_BINDING_SLI_
+#define _AMBIENT_OCCLUSION_PIPELINE_RESOURCE_BINDING_SLI_ 1
+
+#include "../thirdparty/Brioche/shaders/brx_define.sli"
+#include "common_gbuffer_pipeline_ambient_occlusion_pipeline_resource_binding.sli"
+
+brx_top_level_acceleration_structure(g_top_level_acceleration_structure, 0, 1);
+
+brx_texture_2d_uint_array(g_gbuffer_textures, 0, 2, 2);
+
+brx_write_only_texture_2d(g_ambient_occlusion_texture, 0, 3);
+
+#define ambient_occlusion_root_signature_macro                                                                                  \
+    brx_root_signature_root_parameter_begin(ambient_occlusion_root_signature_name)                                              \
+    brx_root_signature_root_cbv(0, 0) brx_root_signature_root_parameter_split                                                   \
+    brx_root_signature_root_descriptor_table_top_level_acceleration_structure(0, 1, 1) brx_root_signature_root_parameter_split  \
+    brx_root_signature_root_descriptor_table_srv(0, 2, 2) brx_root_signature_root_parameter_split                               \
+    brx_root_signature_root_descriptor_table_uav(0, 3, 1)                                                                       \
+    brx_root_signature_root_parameter_end
+
+#endif

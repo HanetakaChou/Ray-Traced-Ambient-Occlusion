@@ -1,0 +1,26 @@
+name: build linux
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        use_debug_libraries: [true, false]
+    steps:
+      - uses: actions/checkout@main
+        with:
+          submodules: 'recursive'
+      - shell: bash
+        run: |
+          sudo apt install libxcb1-dev
+          make -C "./thirdparty/Brioche/build-linux" -f "Linux.mk" "APP_DEBUG:=${{matrix.use_debug_libraries}}"
+          make -C "./thirdparty/Import-Asset/build-linux" -f "Linux.mk" "APP_DEBUG:=${{matrix.use_debug_libraries}}"
+          make -C "./build-assets" -f "Assets.mk"
+          make -C "./build-GLSL" -f "GLSL.mk" "APP_DEBUG:=${{matrix.use_debug_libraries}}"
+          make -C "./build-linux" -f "Linux.mk" "APP_DEBUG:=${{matrix.use_debug_libraries}}"

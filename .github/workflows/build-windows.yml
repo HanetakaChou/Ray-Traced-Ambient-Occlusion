@@ -1,0 +1,23 @@
+name: build windows
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+        platform: [x86, x64]
+    steps:
+      - uses: actions/checkout@main
+        with:
+          submodules: 'recursive'
+      - uses: microsoft/setup-msbuild@main
+      - shell: cmd
+        run: |
+          msbuild ./build-windows/Demo-Ray-Traced-Ambient-Occlusion.sln /p:Configuration=${{matrix.configuration}} /p:Platform=${{matrix.platform}}

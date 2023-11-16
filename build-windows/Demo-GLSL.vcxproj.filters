@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="build-GLSL">
+      <UniqueIdentifier>{6fa5da58-2539-467f-8955-71bef0cd4675}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{e4d28c15-0dfe-4d4f-874c-7150025d0cc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\spirv">
+      <UniqueIdentifier>{162dbdac-15a9-4ce0-a421-bb8a8d352090}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\build-GLSL\GLSL.mk">
+      <Filter>build-GLSL</Filter>
+    </None>
+    <None Include="..\shaders\ambient_occlusion_compute.sl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\ambient_occlusion_pipeline_resource_binding.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\common_asset_constant.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\common_gbuffer_pipeline_ambient_occlusion_pipeline_resource_binding.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\full_screen_transfer_fragment.sl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\full_screen_transfer_pipeline_layout.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\full_screen_transfer_vertex.sl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\gbuffer_compute.sl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\gbuffer_pipeline_resource_binding.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\low_discrepancy_sequence.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\math_constant.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\offset_ray_origin.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\pdf_sampling.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\skin_compute.sl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\skin_pipeline_resource_binding.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\spirv\ambient_occlusion_compute.inl">
+      <Filter>shaders\spirv</Filter>
+    </None>
+    <None Include="..\shaders\spirv\full_screen_transfer_fragment.inl">
+      <Filter>shaders\spirv</Filter>
+    </None>
+    <None Include="..\shaders\spirv\full_screen_transfer_vertex.inl">
+      <Filter>shaders\spirv</Filter>
+    </None>
+    <None Include="..\shaders\spirv\gbuffer_compute.inl">
+      <Filter>shaders\spirv</Filter>
+    </None>
+    <None Include="..\shaders\spirv\skin_compute.inl">
+      <Filter>shaders\spirv</Filter>
+    </None>
+  </ItemGroup>
+</Project>
