@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="assets">
+      <UniqueIdentifier>{bd24d9c3-a3ff-4c29-8dce-fd645270877f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code">
+      <UniqueIdentifier>{6b62e300-cff7-473b-81b7-b9828e035938}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\support">
+      <UniqueIdentifier>{6d9b8513-b86e-4859-aebd-b917efc412cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{6564cc1a-1902-4833-bf99-8a3fd8b5f6fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dxbc">
+      <UniqueIdentifier>{0fdd0fa4-cdf6-47e5-9605-a438eac8a7bf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\code\support\camera_controller.cpp">
+      <Filter>code\support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\support\main.cpp">
+      <Filter>code\support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\support\renderer.cpp">
+      <Filter>code\support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\demo.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\assets\plane.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\assets\house.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\support\tick_count.cpp">
+      <Filter>code\support</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\code\support\camera_controller.h">
+      <Filter>code\support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\support\frame_throttling.h">
+      <Filter>code\support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\support\renderer.h">
+      <Filter>code\support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\demo.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\assets\plane.h">
+      <Filter>assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\assets\house.h">
+      <Filter>assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\support\tick_count.h">
+      <Filter>code\support</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\shaders\swap_chain_pipeline_layout.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\octahedron_mapping.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\gbuffer_pipeline_resource_binding.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\dxbc\gbuffer_fragment.inl">
+      <Filter>dxbc</Filter>
+    </None>
+    <None Include="..\dxbc\gbuffer_vertex.inl">
+      <Filter>dxbc</Filter>
+    </None>
+    <None Include="..\dxbc\swap_chain_fragment.inl">
+      <Filter>dxbc</Filter>
+    </None>
+    <None Include="..\dxbc\swap_chain_vertex.inl">
+      <Filter>dxbc</Filter>
+    </None>
+    <None Include="..\shaders\ambient_occlusion_pipeline_resource_binding.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\dxbc\ambient_occlusion_compute.inl">
+      <Filter>dxbc</Filter>
+    </None>
+    <None Include="..\shaders\pdf_sampling.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\low_discrepancy_sequence.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\math_constant.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\offset_ray_origin.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\common_resource_binding.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\packed_vector.sli">
+      <Filter>shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\shaders\swap_chain_vertex.sl">
+      <Filter>shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\shaders\swap_chain_fragment.sl">
+      <Filter>shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\shaders\gbuffer_compute.sl">
+      <Filter>shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\shaders\ambient_occlusion_compute.sl">
+      <Filter>shaders</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,87 @@
+//
+// Copyright (C) YuqiaoZhang(HanetakaChou)
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+#ifndef _GBUFFER_PIPELINE_RESOURCE_BINDING_SLI_
+#define _GBUFFER_PIPELINE_RESOURCE_BINDING_SLI_ 1
+
+#include "../thirdparty/Brioche/shaders/brx_define.sli"
+#include "common_resource_binding.sli"
+
+#define MAX_GEOMETRY_COUNT 2
+#define MAX_INSTANCE_COUNT 2
+#define MAX_GEOMETRY_BUFFER_COUNT 6
+
+#define g_vertex_position_buffer_stride 12
+#define g_vertex_varying_buffer_stride 4
+#define g_index_buffer_stride 6
+
+#if defined(__cplusplus)
+
+static_assert(scene_instance_count <= MAX_GEOMETRY_COUNT, "");
+static_assert(scene_instance_count <= MAX_INSTANCE_COUNT, "");
+
+static_assert((3 * MAX_GEOMETRY_COUNT) == MAX_GEOMETRY_BUFFER_COUNT, "");
+
+static_assert((sizeof(float) * 3) == g_vertex_position_buffer_stride, "");
+static_assert((sizeof(uint16_t) * 2) == g_vertex_varying_buffer_stride, "");
+static_assert((sizeof(uint16_t) * 3) == g_index_buffer_stride, "");
+#endif
+
+brx_top_level_acceleration_structure(g_top_level_acceleration_structure, 0, 1, 1);
+
+brx_read_only_byte_address_buffer(g_geometry_buffers, 0, 2, MAX_GEOMETRY_BUFFER_COUNT);
+
+struct geometry_data_T
+{
+    brx_uint m_non_uniform_geometry_buffer_index;
+    brx_uint _unused_padding_1;
+    brx_uint _unused_padding_2;
+    brx_uint _unused_padding_3;
+};
+
+brx_cbuffer(gbuffer_pipeline_none_update_set_geometry_data_uniform_buffer_binding, 0, 3)
+{
+    geometry_data_T g_geometry_data[MAX_GEOMETRY_COUNT];
+};
+
+struct instance_data_T
+{
+    brx_column_major brx_float4x4 m_model_transform;
+    brx_uint m_geometry_data_index_offset;
+    brx_uint _unused_padding_1;
+    brx_uint _unused_padding_2;
+    brx_uint _unused_padding_3;
+};
+
+brx_cbuffer(gbuffer_pipeline_none_update_set_instance_data_uniform_buffer_binding, 0, 4)
+{
+    instance_data_T g_instance_data[MAX_INSTANCE_COUNT];
+};
+
+brx_write_only_texture_2d_uint(g_gbuffer_textures, 0, 5, 2);
+
+#define gbuffer_root_signature_macro                                                                                   \
+    brx_root_signature_root_parameter_begin(gbuffer_root_signature_name)                                               \
+    brx_root_signature_root_cbv(0, 0) brx_root_signature_root_parameter_split                                                   \
+    brx_root_signature_root_descriptor_table_top_level_acceleration_structure(0, 1, 1) brx_root_signature_root_parameter_split  \
+    brx_root_signature_root_descriptor_table_srv(0, 2, MAX_GEOMETRY_BUFFER_COUNT) brx_root_signature_root_parameter_split       \
+    brx_root_signature_root_cbv(0, 3) brx_root_signature_root_parameter_split                                                   \
+    brx_root_signature_root_cbv(0, 4) brx_root_signature_root_parameter_split                                                   \
+    brx_root_signature_root_descriptor_table_uav(0, 5, 2)                                                                       \
+    brx_root_signature_root_parameter_end
+
+#endif

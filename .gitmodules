@@ -1,0 +1,12 @@
+[submodule "thirdparty/Brioche"]
+	path = thirdparty/Brioche
+	url = git@github.com:HanetakaChou/Brioche.git
+	branch = master
+[submodule "thirdparty/CoreRT"]
+	path = thirdparty/CoreRT
+	url = git@github.com:HanetakaChou/Ray-Traced-Ambient-Occlusion.git
+	branch = CoreRT
+[submodule "thirdparty/DirectXMath"]
+	path = thirdparty/DirectXMath
+	url = git@github.com:HanetakaChou/Ray-Traced-Ambient-Occlusion.git
+	branch = DirectXMath

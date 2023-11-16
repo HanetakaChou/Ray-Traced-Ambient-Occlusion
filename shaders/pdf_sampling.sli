@@ -1,0 +1,71 @@
+//
+// Copyright (C) YuqiaoZhang(HanetakaChou)
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+#ifndef _PDF_SAMPLING_SLI_
+#define _PDF_SAMPLING_SLI_ 1
+
+#include "math_constant.sli"
+
+brx_float3 normalized_clamped_cosine_sample_omega_i(brx_float2 xi)
+{
+    // PBR Book V3: [13.6.3 Cosine-Weighted Hemisphere Sampling](https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/2D_Sampling_with_Multidimensional_Transformations#Cosine-WeightedHemisphereSampling)
+    // PBRT-V3: [CosineSampleHemisphere](https://github.com/mmp/pbrt-v3/blob/book/src/core/sampling.h#L155)
+    // PBR Book V4: [A.5.3 Cosine-Weighted Hemisphere Sampling](https://www.pbr-book.org/4ed/Sampling_Algorithms/Sampling_Multidimensional_Functions#Cosine-WeightedHemisphereSampling)
+    // PBRT-V4: [SampleCosineHemisphere](https://github.com/mmp/pbrt-v4/blob/ci/src/pbrt/util/sampling.h#L409)
+    // UE: [CosineSampleHemisphere](https://github.com/EpicGames/UnrealEngine/blob/4.27/Engine/Shaders/Private/MonteCarlo.ush#L241)
+    // U3D: [SampleHemisphereCosine](https://github.com/Unity-Technologies/Graphics/blob/v10.8.1/com.unity.render-pipelines.core/ShaderLibrary/Sampling/Sampling.hlsl#L157)
+
+    brx_float2 d;
+    {
+        // Map uniform random numbers to $[-1, 1]^2$
+        brx_float2 u_offset = 2.0 * xi - brx_float2(1.0, 1.0);
+
+        brx_branch
+        if (0.0 == u_offset.x && 0.0 == u_offset.y)
+        {
+            // Handle degeneracy at the origin
+            d = brx_float2(0.0, 0.0);
+        }
+        else
+        {
+            // Apply concentric mapping to point
+            brx_float r;
+            brx_float theta;
+
+            brx_branch
+            if (brx_abs(u_offset.x) > brx_abs(u_offset.y))
+            {
+                r = u_offset.x;
+                theta = (M_PI / 4.0) * (u_offset.y / u_offset.x);
+            }
+            else
+            {
+                r = u_offset.y;
+                theta = (M_PI / 2.0) - (M_PI / 4.0) * (u_offset.x / u_offset.y);
+            }
+
+            d = r * brx_float2(brx_cos(theta), brx_sin(theta));
+        }
+    }
+
+    brx_float z = brx_sqrt(brx_max(0.0, 1.0 - brx_dot(d, d)));
+
+    brx_float3 omega_i = brx_float3(d.x, d.y, z);
+    return omega_i;
+}
+
+#endif

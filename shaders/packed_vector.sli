@@ -1,0 +1,115 @@
+//
+// Copyright (C) YuqiaoZhang(HanetakaChou)
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+#ifndef _PACKED_VECTOR_SLI_
+#define _PACKED_VECTOR_SLI_ 1
+
+brx_float4 R10G10B10A2_SNORM_to_FLOAT4(brx_uint packed_input)
+{
+	// DirectX::PackedVector::XMLoadDecN4
+
+	brx_int element_x = ((brx_int(packed_input & 0x3FF) ^ 0x200) - 0x200);
+	brx_int element_y = (((brx_int(packed_input >> 10) & 0x3FF) ^ 0x200) - 0x200);
+	brx_int element_z = (((brx_int(packed_input >> 20) & 0x3FF) ^ 0x200) - 0x200);
+	brx_int element_w = ((brx_int(packed_input >> 30) ^ 0x2) - 0x2);
+
+	return brx_clamp(brx_float4(element_x, element_y, element_z, element_w) * brx_float4(1.0f / 511.0f, 1.0f / 511.0f, 1.0f / 511.0f, 1.0f), brx_float4(-1.0, -1.0, -1.0, -1.0), brx_float4(1.0, 1.0, 1.0, 1.0));
+}
+
+brx_uint FLOAT4_to_R10G10B10A2_SNORM(brx_float4 unpacked_input)
+{
+	// DirectX::PackedVector::XMStoreDecN4
+
+	brx_float4 tmp = brx_clamp(unpacked_input, brx_float4(-1.0, -1.0, -1.0, -1.0), brx_float4(1.0, 1.0, 1.0, 1.0)) * brx_float4(511.0f, 511.0f, 511.0f, 1.0f);
+
+	brx_int element_x = (brx_int(tmp.x) & 0x3FF);
+	brx_int element_y = ((brx_int(tmp.y) & 0x3FF) << 10);
+	brx_int element_z = ((brx_int(tmp.z) & 0x3FF) << 20);
+	brx_int element_w = (brx_int(tmp.w) << 30);
+
+	return brx_uint(element_x | element_y | element_z | element_w);
+}
+
+brx_float2 R16G16_SNORM_to_FLOAT2(brx_uint packed_input)
+{
+	// DirectX::PackedVector::XMLoadShortN2
+
+	brx_int element_x = ((brx_int(packed_input & 0xffff) ^ 0x8000) - 0x8000);
+	brx_int element_y = (((brx_int(packed_input >> 16) & 0xffff) ^ 0x8000) - 0x8000);
+
+	return brx_clamp(brx_float2(element_x, element_y) * (1.0f / 32767.0f), brx_float2(-1.0, -1.0), brx_float2(1.0, 1.0));
+}
+
+brx_uint R16G16_FLOAT2_to_SNORM(brx_float2 unpacked_input)
+{
+	// DirectX::PackedVector::XMStoreShortN2
+
+	brx_float2 tmp = brx_clamp(unpacked_input, brx_float2(-1.0, -1.0), brx_float2(1.0, 1.0)) * brx_float2(32767.0f, 32767.0f);
+
+	brx_int element_x = (brx_int(tmp.x) & 0xffff);
+	brx_int element_y = ((brx_int(tmp.y) & 0xffff) << 16);
+
+	return brx_uint(element_x | element_y);
+}
+
+brx_float2 R16G16_UNORM_to_FLOAT2(brx_uint packed_input)
+{
+	// DirectX::PackedVector::XMLoadUShortN2
+
+	brx_uint element_x = (packed_input & 0xffff);
+	brx_uint element_y = (packed_input >> 16);
+
+	return brx_float2(element_x, element_y) * (1.0f / 65535.0f);
+}
+
+brx_uint R16G16_FLOAT2_to_UNORM(brx_float2 unpacked_input)
+{
+	// DirectX::PackedVector::XMStoreUShortN2
+
+	brx_float2 tmp = brx_clamp(unpacked_input, brx_float2(0.0, 0.0), brx_float2(1.0, 1.0)) * brx_float2(65535.0f, 65535.0f) + brx_float2(0.5f, 0.5f);
+
+	brx_uint element_x = (brx_uint(tmp.x) & 0xffff);
+	brx_uint element_y = ((brx_uint(tmp.y) & 0xffff) << 16);
+
+	return brx_uint(element_x | element_y);
+}
+
+brx_uint4 R16G16B16A16_UINT_to_UINT4(brx_uint2 packed_input)
+{
+	// DirectX::PackedVector::XMLoadUShort4
+
+	brx_uint element_x = (packed_input.x & 0xffff);
+	brx_uint element_y = (packed_input.x >> 16);
+	brx_uint element_z = (packed_input.y & 0xffff);
+	brx_uint element_w = (packed_input.y >> 16);
+
+	return brx_uint4(element_x, element_y, element_z, element_w);
+}
+
+brx_float4 R16G16B16A16_UNORM_to_FLOAT4(brx_uint2 packed_input)
+{
+	// DirectX::PackedVector::XMLoadUShortN4
+
+	brx_uint element_x = (packed_input.x & 0xffff);
+	brx_uint element_y = (packed_input.x >> 16);
+	brx_uint element_z = (packed_input.y & 0xffff);
+	brx_uint element_w = (packed_input.y >> 16);
+
+	return brx_float4(element_x, element_y, element_z, element_w) * (1.0f / 65535.0f);
+}
+
+#endif
