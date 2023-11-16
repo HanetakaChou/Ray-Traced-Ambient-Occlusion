@@ -1,0 +1,33 @@
+//
+// Copyright (C) YuqiaoZhang(HanetakaChou)
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+#ifndef _SWAP_CHAIN_PIPELINE_LAYOUT_SLI_
+#define _SWAP_CHAIN_PIPELINE_LAYOUT_SLI_ 1
+
+#include "../thirdparty/PAL/shaders/pal_define.sli"
+
+pal_texture_2d(g_texture, 0, 0, 1);
+
+pal_sampler_state(g_sampler, 0, 1, 1);
+
+#define swap_chain_root_signature_macro                                                             \
+    pal_root_signature_root_parameter_begin(swap_chain_root_signature_name)                         \
+    pal_root_signature_root_descriptor_table_srv(0, 0, 1) pal_root_signature_root_parameter_split   \
+    pal_root_signature_root_descriptor_table_sampler(0, 1, 1)                                       \
+    pal_root_signature_root_parameter_end
+
+#endif

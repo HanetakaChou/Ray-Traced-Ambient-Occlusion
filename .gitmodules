@@ -1,0 +1,4 @@
+[submodule "thirdparty/PAL"]
+	path = thirdparty/PAL
+	url = git@github.com:HanetakaChou/PAL.git
+	branch = master

@@ -1,0 +1,86 @@
+//
+// Copyright (C) YuqiaoZhang(HanetakaChou)
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+#ifndef _OCTAHEDRON_MAPPING_SLI_
+#define _OCTAHEDRON_MAPPING_SLI_ 1
+
+// [Engelhardt 2008] Thomas Engelhardt, Carsten Dachsbacher. "Octahedron Environment Maps." VMV 2008.
+// [Cigolle 2014] Zina Cigolle, Sam Donow, Daniel Evangelakos, Michael Mara, Morgan McGuire, Quirin Meyer. "A Survey of Efficient Representations for Independent Unit Vectors." JCGT 2014.
+
+// Real-Time Rendering Fourth Edition: 16.6 Compression and Precision
+
+// PBR Book V4: [3.8.3 Spherical Parameterizations / Octahedral Encoding](https://pbr-book.org/4ed/Geometry_and_Transformations/Spherical_Geometry#x3-OctahedralEncoding)
+// PBRT-V4 [OctahedralVector::OctahedralVector](https://github.com/mmp/pbrt-v4/blob/ci/src/pbrt/util/vecmath.h#L1738)
+// PBRT-V4 [OctahedralVector::operator](https://github.com/mmp/pbrt-v4/blob/ci/src/pbrt/util/vecmath.h#L1751)
+
+#if defined(__STDC__) || defined(__cplusplus)
+
+DirectX::XMFLOAT2 octahedron_map(DirectX::XMFLOAT3 const &position_sphere_space)
+{
+    float const manhattan_norm = std::abs(position_sphere_space.x) + std::abs(position_sphere_space.y) + std::abs(position_sphere_space.z);
+
+    DirectX::XMFLOAT3 position_octahedron_space;
+    DirectX::XMStoreFloat3(&position_octahedron_space, DirectX::XMVectorScale(DirectX::XMLoadFloat3(&position_sphere_space), 1.0F / manhattan_norm));
+
+    DirectX::XMFLOAT2 const position_rectangle_space = (position_octahedron_space.z > 0.0F) ? DirectX::XMFLOAT2(position_octahedron_space.x, position_octahedron_space.y) : DirectX::XMFLOAT2((1.0F - std::abs(position_octahedron_space.y)) * ((position_octahedron_space.x >= 0.0F) ? 1.0F : -1.0F), (1.0F - std::abs(position_octahedron_space.x)) * ((position_octahedron_space.y >= 0.0F) ? 1.0F : -1.0F));
+    return position_rectangle_space;
+}
+
+DirectX::XMFLOAT3 octahedron_unmap(DirectX::XMFLOAT2 const &position_rectangle_space)
+{
+    float const position_octahedron_space_z = 1.0F - std::abs(position_rectangle_space.x) - std::abs(position_rectangle_space.y);
+
+    DirectX::XMFLOAT2 const position_octahedron_space_xy = (position_octahedron_space_z >= 0.0F) ? position_rectangle_space : DirectX::XMFLOAT2((1.0F - std::abs(position_rectangle_space.y)) * ((position_rectangle_space.x >= 0.0F) ? 1.0F : -1.0F), (1.0F - std::abs(position_rectangle_space.x)) * ((position_rectangle_space.y >= 0.0F) ? 1.0F : -1.0F));
+
+    DirectX::XMFLOAT3 const position_octahedron_space = DirectX::XMFLOAT3(position_octahedron_space_xy.x, position_octahedron_space_xy.y, position_octahedron_space_z);
+
+    DirectX::XMFLOAT3 position_sphere_space;
+    DirectX::XMStoreFloat3(&position_sphere_space, DirectX::XMVector3Normalize(DirectX::XMLoadFloat3(&position_octahedron_space)));
+    return position_sphere_space;
+}
+
+#elif defined(GL_SPIRV) || defined(VULKAN) || defined(HLSL_VERSION) || defined(__HLSL_VERSION)
+
+#include "../thirdparty/PAL/shaders/pal_define.sli"
+
+pal_float2 octahedron_map(pal_float3 position_sphere_space)
+{
+    pal_float manhattan_norm = pal_abs(position_sphere_space.x) + pal_abs(position_sphere_space.y) + pal_abs(position_sphere_space.z);
+
+    pal_float3 position_octahedron_space = position_sphere_space * (1.0 / manhattan_norm);
+
+    pal_float2 position_rectangle_space = (position_octahedron_space.z > 0.0) ? position_octahedron_space.xy : pal_float2((1.0 - pal_abs(position_octahedron_space.y)) * ((position_octahedron_space.x >= 0.0) ? 1.0 : -1.0), (1.0 - pal_abs(position_octahedron_space.x)) * ((position_octahedron_space.y >= 0.0) ? 1.0 : -1.0));
+
+    return position_rectangle_space;
+}
+
+pal_float3 octahedron_unmap(pal_float2 position_rectangle_space)
+{
+    pal_float position_octahedron_space_z = 1.0 - pal_abs(position_rectangle_space.x) - pal_abs(position_rectangle_space.y);
+
+    pal_float2 position_octahedron_space_xy = (position_octahedron_space_z >= 0.0) ? position_rectangle_space : pal_float2((1.0 - pal_abs(position_rectangle_space.y)) * ((position_rectangle_space.x >= 0.0) ? 1.0 : -1.0), (1.0 - pal_abs(position_rectangle_space.x)) * ((position_rectangle_space.y >= 0.0) ? 1.0 : -1.0));
+
+    pal_float3 position_sphere_space = pal_normalize(pal_float3(position_octahedron_space_xy, position_octahedron_space_z));
+
+    return position_sphere_space;
+}
+
+#else
+#error Unknown Compiler
+#endif
+
+#endif

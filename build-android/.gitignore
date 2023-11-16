@@ -1,0 +1,11 @@
+/lib
+/obj
+/keystore
+/flat
+/apk
+
+/.vs
+/.agde
+/bin-agde
+/obj-agde
+/*.vcxproj.user
