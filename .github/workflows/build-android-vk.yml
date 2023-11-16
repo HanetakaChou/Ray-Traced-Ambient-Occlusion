@@ -1,0 +1,25 @@
+name: build android vk
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build_android:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        use_debug_libraries: [true, false]
+        target_arch_abi: [armeabi-v7a, arm64-v8a, x86, x86_64]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'true'
+      - shell: cmd
+        run: |
+          call "%ANDROID_NDK_ROOT%\ndk-build" -C "./thirdparty/PAL/build-android" "NDK_PROJECT_PATH:=null" "NDK_APPLICATION_MK:=.\Application.mk" "APP_BUILD_SCRIPT:=.\Android.mk" "NDK_OUT:=.\obj" "NDK_LIBS_OUT:=.\lib" "APP_DEBUG:=${{matrix.use_debug_libraries}}" "APP_ABI:=${{matrix.target_arch_abi}}" "APP_PLATFORM:=android-28" "APP_STL:=c++_static"
+          call "%ANDROID_NDK_ROOT%\prebuilt\windows-x86_64\bin\make" -C "./build-android" -f ".\GLSL.mk" "APP_DEBUG:=${{matrix.use_debug_libraries}}"
+          call "%ANDROID_NDK_ROOT%\ndk-build" -C "./build-android" "NDK_PROJECT_PATH:=null" "NDK_APPLICATION_MK:=.\Application.mk" "APP_BUILD_SCRIPT:=.\Android.mk" "NDK_OUT:=.\obj" "NDK_LIBS_OUT:=.\lib" "APP_DEBUG:=${{matrix.use_debug_libraries}}" "APP_ABI:=${{matrix.target_arch_abi}}" "APP_PLATFORM:=android-28" "APP_STL:=c++_static"
+          call "%ANDROID_NDK_ROOT%\prebuilt\windows-x86_64\bin\make" -C "./build-android" -f ".\APK.mk" "ANDROID_SDK_DIR:=%ANDROID_SDK_ROOT%\." "JDK_DIR:=%JAVA_HOME%\." "ANDROID_SDK_BUILD_TOOLS_VERSION:=33.0.2" "APP_PLATFORM:=android-33"

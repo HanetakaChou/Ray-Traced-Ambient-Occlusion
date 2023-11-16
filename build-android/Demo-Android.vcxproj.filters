@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+     Copyright (C) 2021 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="assets">
+      <UniqueIdentifier>{d3d44437-e70c-46bd-8c20-c2cd514ac0e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code">
+      <UniqueIdentifier>{34b12179-03f8-4980-bf41-3d511b13a773}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\support">
+      <UniqueIdentifier>{736508dc-56c9-4d65-be52-be367b671481}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{fdeb210d-c2e5-4c62-97d5-6dffea2f65d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="spirv">
+      <UniqueIdentifier>{b61d08d5-1eee-4c9e-ac04-30cdb0a92f1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="build-android">
+      <UniqueIdentifier>{e04f4479-55dc-4c69-9e6c-a2db6e3fe81b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\code\support\camera_controller.cpp">
+      <Filter>code\support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\support\main.cpp">
+      <Filter>code\support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\support\renderer.cpp">
+      <Filter>code\support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\support\utils_align_up.cpp">
+      <Filter>code\support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\demo.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\assets\house.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\assets\plane.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\code\support\camera_controller.h">
+      <Filter>code\support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\support\frame_throttling.h">
+      <Filter>code\support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\support\renderer.h">
+      <Filter>code\support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\support\utils_align_up.h">
+      <Filter>code\support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\demo.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\assets\house.h">
+      <Filter>assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\assets\plane.h">
+      <Filter>assets</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Android.mk">
+      <Filter>build-android</Filter>
+    </None>
+    <None Include="APK.mk">
+      <Filter>build-android</Filter>
+    </None>
+    <None Include="GLSL.mk">
+      <Filter>build-android</Filter>
+    </None>
+    <None Include="libdemo-android.map">
+      <Filter>build-android</Filter>
+    </None>
+    <None Include="..\shaders\ambient_occlusion_compute.sl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\ambient_occlusion_pipeline_layout.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\geometric_buffer_fragment.sl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\geometric_buffer_pipeline_layout.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\geometric_buffer_vertex.sl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\low_discrepancy_sequence.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\math_constant.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\octahedron_mapping.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\swap_chain_fragment.sl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\swap_chain_pipeline_layout.sli">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\shaders\swap_chain_vertex.sl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\spirv\ambient_occlusion_compute.d">
+      <Filter>spirv</Filter>
+    </None>
+    <None Include="..\spirv\ambient_occlusion_compute.inl">
+      <Filter>spirv</Filter>
+    </None>
+    <None Include="..\spirv\geometric_buffer_fragment.d">
+      <Filter>spirv</Filter>
+    </None>
+    <None Include="..\spirv\geometric_buffer_fragment.inl">
+      <Filter>spirv</Filter>
+    </None>
+    <None Include="..\spirv\geometric_buffer_vertex.d">
+      <Filter>spirv</Filter>
+    </None>
+    <None Include="..\spirv\geometric_buffer_vertex.inl">
+      <Filter>spirv</Filter>
+    </None>
+    <None Include="..\spirv\swap_chain_fragment.d">
+      <Filter>spirv</Filter>
+    </None>
+    <None Include="..\spirv\swap_chain_fragment.inl">
+      <Filter>spirv</Filter>
+    </None>
+    <None Include="..\spirv\swap_chain_vertex.d">
+      <Filter>spirv</Filter>
+    </None>
+    <None Include="..\spirv\swap_chain_vertex.inl">
+      <Filter>spirv</Filter>
+    </None>
+    <None Include="..\shaders\pdf_sampling.sli">
+      <Filter>shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="AndroidManifest.xml">
+      <Filter>build-android</Filter>
+    </Xml>
+  </ItemGroup>
+</Project>

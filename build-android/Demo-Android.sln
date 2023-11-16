@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31314.256
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Demo-Android", "Demo-Android.vcxproj", "{3A69BCA0-721C-44C0-AC70-3872753374A6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{719A58B7-8373-4C08-988E-A21F43E7EE23} = {719A58B7-8373-4C08-988E-A21F43E7EE23}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PAL-Android", "..\thirdparty\PAL\build-android\PAL-Android.vcxproj", "{719A58B7-8373-4C08-988E-A21F43E7EE23}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Android-arm64-v8a = Debug|Android-arm64-v8a
+		Debug|Android-armeabi-v7a = Debug|Android-armeabi-v7a
+		Debug|Android-x86 = Debug|Android-x86
+		Debug|Android-x86_64 = Debug|Android-x86_64
+		Release|Android-arm64-v8a = Release|Android-arm64-v8a
+		Release|Android-armeabi-v7a = Release|Android-armeabi-v7a
+		Release|Android-x86 = Release|Android-x86
+		Release|Android-x86_64 = Release|Android-x86_64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3A69BCA0-721C-44C0-AC70-3872753374A6}.Debug|Android-arm64-v8a.ActiveCfg = Debug|Android-arm64-v8a
+		{3A69BCA0-721C-44C0-AC70-3872753374A6}.Debug|Android-arm64-v8a.Build.0 = Debug|Android-arm64-v8a
+		{3A69BCA0-721C-44C0-AC70-3872753374A6}.Debug|Android-armeabi-v7a.ActiveCfg = Debug|Android-armeabi-v7a
+		{3A69BCA0-721C-44C0-AC70-3872753374A6}.Debug|Android-armeabi-v7a.Build.0 = Debug|Android-armeabi-v7a
+		{3A69BCA0-721C-44C0-AC70-3872753374A6}.Debug|Android-x86.ActiveCfg = Debug|Android-x86
+		{3A69BCA0-721C-44C0-AC70-3872753374A6}.Debug|Android-x86.Build.0 = Debug|Android-x86
+		{3A69BCA0-721C-44C0-AC70-3872753374A6}.Debug|Android-x86_64.ActiveCfg = Debug|Android-x86_64
+		{3A69BCA0-721C-44C0-AC70-3872753374A6}.Debug|Android-x86_64.Build.0 = Debug|Android-x86_64
+		{3A69BCA0-721C-44C0-AC70-3872753374A6}.Release|Android-arm64-v8a.ActiveCfg = Release|Android-arm64-v8a
+		{3A69BCA0-721C-44C0-AC70-3872753374A6}.Release|Android-arm64-v8a.Build.0 = Release|Android-arm64-v8a
+		{3A69BCA0-721C-44C0-AC70-3872753374A6}.Release|Android-armeabi-v7a.ActiveCfg = Release|Android-armeabi-v7a
+		{3A69BCA0-721C-44C0-AC70-3872753374A6}.Release|Android-armeabi-v7a.Build.0 = Release|Android-armeabi-v7a
+		{3A69BCA0-721C-44C0-AC70-3872753374A6}.Release|Android-x86.ActiveCfg = Release|Android-x86
+		{3A69BCA0-721C-44C0-AC70-3872753374A6}.Release|Android-x86.Build.0 = Release|Android-x86
+		{3A69BCA0-721C-44C0-AC70-3872753374A6}.Release|Android-x86_64.ActiveCfg = Release|Android-x86_64
+		{3A69BCA0-721C-44C0-AC70-3872753374A6}.Release|Android-x86_64.Build.0 = Release|Android-x86_64
+		{719A58B7-8373-4C08-988E-A21F43E7EE23}.Debug|Android-arm64-v8a.ActiveCfg = Debug|Android-arm64-v8a
+		{719A58B7-8373-4C08-988E-A21F43E7EE23}.Debug|Android-arm64-v8a.Build.0 = Debug|Android-arm64-v8a
+		{719A58B7-8373-4C08-988E-A21F43E7EE23}.Debug|Android-armeabi-v7a.ActiveCfg = Debug|Android-armeabi-v7a
+		{719A58B7-8373-4C08-988E-A21F43E7EE23}.Debug|Android-armeabi-v7a.Build.0 = Debug|Android-armeabi-v7a
+		{719A58B7-8373-4C08-988E-A21F43E7EE23}.Debug|Android-x86.ActiveCfg = Debug|Android-x86
+		{719A58B7-8373-4C08-988E-A21F43E7EE23}.Debug|Android-x86.Build.0 = Debug|Android-x86
+		{719A58B7-8373-4C08-988E-A21F43E7EE23}.Debug|Android-x86_64.ActiveCfg = Debug|Android-x86_64
+		{719A58B7-8373-4C08-988E-A21F43E7EE23}.Debug|Android-x86_64.Build.0 = Debug|Android-x86_64
+		{719A58B7-8373-4C08-988E-A21F43E7EE23}.Release|Android-arm64-v8a.ActiveCfg = Release|Android-arm64-v8a
+		{719A58B7-8373-4C08-988E-A21F43E7EE23}.Release|Android-arm64-v8a.Build.0 = Release|Android-arm64-v8a
+		{719A58B7-8373-4C08-988E-A21F43E7EE23}.Release|Android-armeabi-v7a.ActiveCfg = Release|Android-armeabi-v7a
+		{719A58B7-8373-4C08-988E-A21F43E7EE23}.Release|Android-armeabi-v7a.Build.0 = Release|Android-armeabi-v7a
+		{719A58B7-8373-4C08-988E-A21F43E7EE23}.Release|Android-x86.ActiveCfg = Release|Android-x86
+		{719A58B7-8373-4C08-988E-A21F43E7EE23}.Release|Android-x86.Build.0 = Release|Android-x86
+		{719A58B7-8373-4C08-988E-A21F43E7EE23}.Release|Android-x86_64.ActiveCfg = Release|Android-x86_64
+		{719A58B7-8373-4C08-988E-A21F43E7EE23}.Release|Android-x86_64.Build.0 = Release|Android-x86_64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3142C50D-495E-471E-A6B1-1E555B3ADA9B}
+	EndGlobalSection
+EndGlobal

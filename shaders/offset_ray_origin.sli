@@ -1,0 +1,117 @@
+//
+// Copyright (C) YuqiaoZhang(HanetakaChou)
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+#ifndef _OFFSET_RAY_ORIGIN_SLI_
+#define _OFFSET_RAY_ORIGIN_SLI_ 1
+
+pal_float next_float_up(pal_float x)
+{
+    pal_branch
+    if (pal_is_inf(x) && x > 0.0)
+    {
+        return x;
+    }
+
+    pal_branch
+    if (x == -0.0)
+    {
+        x = 0.0;
+    }
+
+    pal_uint ui = pal_float_as_uint(x);
+    pal_branch
+    if (x >= 0.0)
+    {
+        ++ui;
+    }
+    else
+    {
+        --ui;
+    }
+    return pal_uint_as_float(ui);
+}
+
+pal_float next_float_down(pal_float x)
+{
+    pal_branch
+    if (pal_is_inf(x) && x < 0.0)
+    {
+        return x;
+    }
+
+    pal_branch
+    if (x == 0.0)
+    {
+        x = -0.0;
+    }
+
+    pal_uint ui = pal_float_as_uint(x);
+    pal_branch
+    if (x > 0.0)
+    {
+        --ui;
+    }
+    else
+    {
+        ++ui;
+    }
+    return pal_uint_as_float(ui);
+}
+
+pal_float3 offset_ray_origin(pal_float3 p, pal_float3 n, pal_float3 omega_i)
+{
+#if 0
+    // Ray-Tracing-Gems: [Chapter 6: A Fast and Robust Method for Avoiding Self-Intersection](https://www.realtimerendering.com/raytracinggems/rtg/index.html)
+    // Ray-Tracing-Gems: [offset_ray](https://github.com/Apress/ray-tracing-gems/blob/master/Ch_06_A_Fast_and_Robust_Method_for_Avoiding_Self-Intersection/offset_ray.cu)
+
+    const pal_float origin = 1.0 / 32.0;
+    const pal_float float_scale = 1.0 / 65536.0;
+    const float int_scale = 256.0;
+
+    n = (pal_dot(omega_i, n) >= 0.0) ? n : -n;
+
+    pal_int3 of_i = pal_int3(int_scale * n);
+
+    pal_float3 p_i = pal_float3(
+        pal_int_as_float(pal_float_as_int(p.x) + ((p.x < 0.0) ? -of_i.x : of_i.x)),
+        pal_int_as_float(pal_float_as_int(p.y) + ((p.y < 0.0) ? -of_i.y : of_i.y)),
+        pal_int_as_float(pal_float_as_int(p.z) + ((p.z < 0.0) ? -of_i.z : of_i.z)));
+
+    return pal_float3((pal_abs(p.x) < origin) ? (p.x + float_scale * n.x) : p_i.x,
+                      (pal_abs(p.y) < origin) ? (p.y + float_scale * n.y) : p_i.y,
+                      (pal_abs(p.z) < origin) ? (p.z + float_scale * n.z) : p_i.z);
+#else
+    // PBR-BOOK-V3: [3.9.5 Robust Spawned Ray Origins](https://pbr-book.org/3ed-2018/Shapes/Managing_Rounding_Error#RobustSpawnedRayOrigins)
+    // PBRT-V3: [OffsetRayOrigin](https://github.com/mmp/pbrt-v3/blob/book/src/core/geometry.h#L1421)
+    // PBR-BOOK-V4: [6.8.6 Robust Spawned Ray Origins](https://pbr-book.org/4ed/Shapes/Managing_Rounding_Error#RobustSpawnedRayOrigins)
+    // PBRT-V4: [OffsetRayOrigin](https://github.com/mmp/pbrt-v4/blob/ci/src/pbrt/ray.h#L75)
+
+    // TODO: how to find the correct error value
+    const pal_float3 error = pal_float3(0.0005, 0.0005, 0.0005);
+
+    pal_float d = pal_dot(pal_abs(n), error);
+    pal_float3 offset = d * ((pal_dot(omega_i, n) >= 0.0) ? n : -n);
+    pal_float3 p_o = p + offset;
+
+    p_o.x = (offset.x > 0.0) ? next_float_up(p_o.x) : ((offset.x < 0.0) ? next_float_down(p_o.x) : p_o.x);
+    p_o.y = (offset.y > 0.0) ? next_float_up(p_o.y) : ((offset.y < 0.0) ? next_float_down(p_o.y) : p_o.y);
+    p_o.z = (offset.z > 0.0) ? next_float_up(p_o.z) : ((offset.z < 0.0) ? next_float_down(p_o.z) : p_o.z);
+    return p_o;
+#endif
+}
+
+#endif
